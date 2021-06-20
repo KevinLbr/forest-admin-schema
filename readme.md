@@ -22,11 +22,11 @@ Forest admin schema is a Laravel Package which introspect the models schema.
 3. Add in `config/app.php` in **providers**
 ```php   
 'providers' => [
-   /*
-   * Application Service Providers...
-   */
-   ...
-   App\Providers\RouteServiceProvider::class,
-   KevinLbr\ForestAdminSchema\Providers\SchemaProvider::class,
-   ],
+    /*
+    * Application Service Providers...
+    */
+    ...
+    App\Providers\RouteServiceProvider::class,
+    KevinLbr\ForestAdminSchema\Providers\SchemaProvider::class,
+],
 ```
