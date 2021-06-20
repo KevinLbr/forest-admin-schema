@@ -1,0 +1,21 @@
+{
+    "name": "kevinlabre/forest-admin-schema",
+    "authors": [
+        {
+            "name": "Kevin Labre",
+            "email": "kevinlabre@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^7.4|^8.0"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": ">=8.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KevinLbr\\ForestAdminSchema\\Tests\\": "tests/"
+        }
+    }
+}
