@@ -33,3 +33,6 @@ Forest admin schema is a Laravel Package which introspect the models schema.
 4. Execute `composer dump-autoload`
 
 5. Execute `php artisan forest-admin-schema:scan`
+
+### Time Tracking 
+- Dimanche 19h - 21h : Initialisation du projet sur github, création du paquet, mise en place du DDD et du TDD.
