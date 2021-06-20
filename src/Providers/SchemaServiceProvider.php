@@ -3,6 +3,7 @@
 namespace KevinLbr\ForestAdminSchema\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KevinLbr\ForestAdminSchema\Commands\ScanCommand;
 
 class SchemaServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class SchemaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                ScanCommand::class,
+            ]);
+        }
     }
 }

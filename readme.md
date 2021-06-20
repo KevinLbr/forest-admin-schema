@@ -30,3 +30,6 @@ Forest admin schema is a Laravel Package which introspect the models schema.
     KevinLbr\ForestAdminSchema\Providers\SchemaProvider::class,
 ],
 ```
+4. Execute `composer dump-autoload`
+
+5. Execute `php artisan forest-admin-schema:scan`
