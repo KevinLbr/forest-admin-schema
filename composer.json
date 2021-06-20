@@ -13,6 +13,11 @@
     "require-dev": {
         "../../../../vendor/phpunit/phpunit": ">=8.0"
     },
+    "autoload": {
+        "psr-4": {
+            "KevinLbr\\ForestAdminSchema\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "KevinLbr\\ForestAdminSchema\\Tests\\": "tests/"
