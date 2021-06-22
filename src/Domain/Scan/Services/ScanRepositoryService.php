@@ -4,6 +4,7 @@
 namespace KevinLbr\ForestAdminSchema\Domain\Scan\Services;
 
 
+use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 
 class ScanRepositoryService
@@ -18,8 +19,46 @@ class ScanRepositoryService
         $this->repository = $repository;
     }
 
+    /**
+     * @return Table[]
+     */
     public function getTables(): array
     {
         return $this->repository->getTables();
+    }
+
+    public function getJson(): array
+    {
+        $json = [];
+        foreach($this->getTables() as $table){
+            $json[] = $this->buildTable($table);
+        }
+
+        return $json;
+    }
+
+    private function buildTable(Table $table) : array
+    {
+        $jsonTable = [
+            "table" => $table,
+            "qty_columns" => count($table->getColumns()),
+        ];
+
+        $jsonTable['columns'] = $this->buildColumns($table);
+
+        return $jsonTable;
+    }
+
+    private function buildColumns(Table $table) : array
+    {
+        $columns = [];
+        foreach($table->getColumns() as $column){
+            $columns[]= [
+                "name" => $column->getName(),
+                "type" => $column->getType(),
+            ];
+        }
+
+        return $columns;
     }
 }

@@ -34,4 +34,9 @@ class Table
     {
         return $this->columns;
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

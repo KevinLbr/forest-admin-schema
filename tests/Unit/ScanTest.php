@@ -140,4 +140,37 @@ class ScanTest extends TestCase
         // Asserts
         $this->assertEquals([$table1, $table2], $tables);
     }
+
+    /**
+     * @test
+     */
+    public function should_json_with_one_table_with_one_column()
+    {
+        //Arrange
+        $nameTable = "users";
+        $nameColumn = "name";
+        $typeColumn = Column::TYPE_VARCHAR;
+        $column = new Column($nameColumn, $typeColumn);
+        $table = new Table($nameTable, [$column]);
+        $this->repository->setTables([$table]);
+
+        //Act
+        $json = (new ScanRepositoryService($this->repository))->getJSON();
+
+        // Asserts
+        $jsonExpected = [
+            [
+                "table" => $table,
+                "qty_columns" => count($table->getColumns()),
+                "columns" => [
+                    [
+                        "name" => $nameColumn,
+                        "type" => $typeColumn,
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($json, $jsonExpected);
+    }
 }
