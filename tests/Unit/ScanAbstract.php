@@ -11,7 +11,7 @@ use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterfac
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
 use PHPUnit\Framework\TestCase;
 
-class ScanTest extends TestCase
+abstract class ScanAbstract extends TestCase
 {
     /**
      * @var TablesRepositoryInterface
