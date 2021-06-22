@@ -4,14 +4,14 @@ namespace KevinLbr\ForestAdminSchema\Tests\Unit;
 
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Column;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\EloquentTablesRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\FileStorageRepositoryInterface;
-use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryFileStorageRepository;
-use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryTablesRepository;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\StorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
 use PHPUnit\Framework\TestCase;
 
-abstract class ScanAbstract extends TestCase
+class ScanEloquentTest extends TestCase
 {
     /**
      * @var TablesRepositoryInterface
@@ -31,8 +31,8 @@ abstract class ScanAbstract extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->repository = new InMemoryTablesRepository();
-        $this->fileStorageRepository = new InMemoryFileStorageRepository();
+        $this->repository = new EloquentTablesRepository();
+        $this->fileStorageRepository = new StorageRepository();
         $this->path = __DIR__ . "/forestadmin-schema.json";
     }
 
@@ -41,6 +41,7 @@ abstract class ScanAbstract extends TestCase
         parent::tearDown();
 
         $this->fileStorageRepository->remove($this->path);
+        // TODO remove all tables
     }
 
     /**
@@ -50,7 +51,6 @@ abstract class ScanAbstract extends TestCase
     {
         //Arrange
         $this->repository->setTables([]);
-
         //Act
         $tables = (new ScanRepositoryService($this->repository, $this->fileStorageRepository))->getTables();
 
