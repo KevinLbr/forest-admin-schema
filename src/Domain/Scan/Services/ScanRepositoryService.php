@@ -5,6 +5,7 @@ namespace KevinLbr\ForestAdminSchema\Domain\Scan\Services;
 
 
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\FileStorageRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 
 class ScanRepositoryService
@@ -14,9 +15,15 @@ class ScanRepositoryService
      */
     private $repository;
 
-    public function __construct(TablesRepositoryInterface $repository)
+    /**
+     * @var FileStorageRepositoryInterface
+     */
+    private $fileStorageRepository;
+
+    public function __construct(TablesRepositoryInterface $repository, FileStorageRepositoryInterface $fileStorageRepository)
     {
         $this->repository = $repository;
+        $this->fileStorageRepository = $fileStorageRepository;
     }
 
     /**
@@ -40,7 +47,7 @@ class ScanRepositoryService
     private function buildTable(Table $table) : array
     {
         $jsonTable = [
-            "table" => $table,
+            "table" => $table->getName(),
             "qty_columns" => count($table->getColumns()),
         ];
 
@@ -60,5 +67,11 @@ class ScanRepositoryService
         }
 
         return $columns;
+    }
+
+    public function saveJson(string $path): bool
+    {
+        $json = $this->getJson();
+        return $this->fileStorageRepository->save($path, $json);
     }
 }
