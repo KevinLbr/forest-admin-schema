@@ -4,24 +4,24 @@
 namespace KevinLbr\ForestAdminSchema\Domain\Scan\Repositories;
 
 
+use Illuminate\Support\Facades\Storage;
+
 class StorageRepository implements FileStorageRepositoryInterface
 {
     public function save(string $path, array $json): bool
     {
-        // TODO
-        return true;
+        return Storage::put($path, json_encode($json));
     }
 
     public function fileExists(string $path): bool
     {
-        // TODO
-        return true;
+        return Storage::exists($path);
     }
 
     public function remove(string $path): bool
     {
         if($this->fileExists($path)){
-            // TODO
+            Storage::delete($path);
         }
 
         return ! $this->fileExists($path);

@@ -9,7 +9,7 @@ use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryFileStorageRepos
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryTablesRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
-use PHPUnit\Framework\TestCase;
+use KevinLbr\ForestAdminSchema\Tests\TestCase;
 
 class ScanInMemoryTest extends TestCase
 {
