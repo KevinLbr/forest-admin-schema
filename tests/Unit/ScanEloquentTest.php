@@ -39,8 +39,7 @@ class ScanEloquentTest extends TestCase
     {
         parent::tearDown();
 
-//        $this->fileStorageRepository->remove($this->path);
-        // TODO remove all tables
+        $this->fileStorageRepository->remove($this->path);
     }
 
     /**
