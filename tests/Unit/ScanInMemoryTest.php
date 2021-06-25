@@ -83,7 +83,7 @@ class ScanInMemoryTest extends TestCase
         //Arrange
         $nameTable = "users";
         $nameColumn = "name";
-        $typeColumn = Column::TYPE_VARCHAR;
+        $typeColumn = Column::TYPE_STRING;
         $column = new Column($nameColumn, $typeColumn);
         $table = new Table($nameTable, [$column]);
         $this->repository->setTables([$table]);
@@ -106,7 +106,7 @@ class ScanInMemoryTest extends TestCase
         //Arrange
         $nameTable = "users";
         $nameColumn1 = "name";
-        $typeColumn1 = Column::TYPE_VARCHAR;
+        $typeColumn1 = Column::TYPE_STRING;
         $column1 = new Column($nameColumn1, $typeColumn1);
 
         $nameColumn2 = "description";
@@ -132,7 +132,7 @@ class ScanInMemoryTest extends TestCase
         // Table 1
         $nameTable1 = "users";
         $nameColumn1 = "name";
-        $typeColumn1 = Column::TYPE_VARCHAR;
+        $typeColumn1 = Column::TYPE_STRING;
         $column1 = new Column($nameColumn1, $typeColumn1);
 
         $nameColumn2 = "description";
@@ -144,7 +144,7 @@ class ScanInMemoryTest extends TestCase
         // Table 2
         $nameTable2 = "products";
         $nameColumn3 = "id";
-        $typeColumn3 = Column::TYPE_INT;
+        $typeColumn3 = Column::TYPE_INTEGER;
         $column3 = new Column($nameColumn3, $typeColumn3);
 
         $nameColumn4 = "description";
@@ -170,7 +170,7 @@ class ScanInMemoryTest extends TestCase
         //Arrange
         $nameTable = "users";
         $nameColumn = "name";
-        $typeColumn = Column::TYPE_VARCHAR;
+        $typeColumn = Column::TYPE_STRING;
         $column = new Column($nameColumn, $typeColumn);
         $table = new Table($nameTable, [$column]);
         $this->repository->setTables([$table]);
@@ -204,7 +204,7 @@ class ScanInMemoryTest extends TestCase
         // Table 1
         $nameTable1 = "users";
         $nameColumn1 = "name";
-        $typeColumn1 = Column::TYPE_VARCHAR;
+        $typeColumn1 = Column::TYPE_STRING;
         $column1 = new Column($nameColumn1, $typeColumn1);
 
         $nameColumn2 = "description";
@@ -216,7 +216,7 @@ class ScanInMemoryTest extends TestCase
         // Table 2
         $nameTable2 = "products";
         $nameColumn3 = "id";
-        $typeColumn3 = Column::TYPE_INT;
+        $typeColumn3 = Column::TYPE_INTEGER;
         $column3 = new Column($nameColumn3, $typeColumn3);
 
         $nameColumn4 = "description";
@@ -273,7 +273,7 @@ class ScanInMemoryTest extends TestCase
         //Arrange
         $nameTable = "users";
         $nameColumn = "name";
-        $typeColumn = Column::TYPE_VARCHAR;
+        $typeColumn = Column::TYPE_STRING;
         $column = new Column($nameColumn, $typeColumn);
         $table = new Table($nameTable, [$column]);
         $this->repository->setTables([$table]);

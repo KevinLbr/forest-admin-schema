@@ -7,12 +7,12 @@ namespace KevinLbr\ForestAdminSchema\Domain\Scan\Models;
 class Column
 {
     const TYPES = [
-        self::TYPE_VARCHAR, self::TYPE_TEXT, self::TYPE_INT
+        self::TYPE_STRING, self::TYPE_TEXT, self::TYPE_INTEGER
     ];
 
-    const TYPE_VARCHAR = "varchar";
+    const TYPE_STRING = "string";
     const TYPE_TEXT = "text";
-    const TYPE_INT = "int";
+    const TYPE_INTEGER = "integer";
 
     /**
      * @var string
