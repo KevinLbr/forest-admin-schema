@@ -3,7 +3,7 @@
 Forest admin schema is a Laravel Package which introspect the models schema.
 
 # Installation 
-1. Create packages/KevinLbr in your Laravel project and put this project in.
+1. git clone this package in packages/KevinLbr folder.
 2. add in main composer.json, in  "KevinLbr\\ForestAdminSchema\\": "packages/KevinLbr/forest-admin-schema/app/"
 
 ```json
