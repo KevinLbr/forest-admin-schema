@@ -5,7 +5,6 @@ namespace KevinLbr\ForestAdminSchema\Commands;
 use Illuminate\Console\Command;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\EloquentTablesRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryFileStorageRepository;
-use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\StorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
 
 class ScanCommand extends Command
