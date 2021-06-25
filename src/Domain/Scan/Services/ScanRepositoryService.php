@@ -56,6 +56,13 @@ class ScanRepositoryService
         return $jsonTable;
     }
 
+    public function saveJson(string $path): bool
+    {
+        $json = $this->getJson();
+
+        return $this->fileStorageRepository->save($path, $json);
+    }
+
     private function buildColumns(Table $table) : array
     {
         $columns = [];
@@ -67,12 +74,5 @@ class ScanRepositoryService
         }
 
         return $columns;
-    }
-
-    public function saveJson(string $path): bool
-    {
-        $json = $this->getJson();
-
-        return $this->fileStorageRepository->save($path, $json);
     }
 }
