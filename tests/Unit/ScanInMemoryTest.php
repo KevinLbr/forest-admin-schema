@@ -78,7 +78,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_one_table_with_one_column()
+    public function should_have_one_table_with_one_column()
     {
         //Arrange
         $nameTable = "users";
@@ -101,7 +101,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_one_table_with_many_columns()
+    public function should_have_one_table_with_many_columns()
     {
         //Arrange
         $nameTable = "users";
@@ -126,7 +126,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_many_tables_with_many_columns()
+    public function should_have_many_tables_with_many_columns()
     {
         //Arrange
         // Table 1
@@ -165,7 +165,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_json_with_one_table_with_one_column()
+    public function should_have_json_with_one_table_with_one_column()
     {
         //Arrange
         $nameTable = "users";
@@ -198,7 +198,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_json_with_many_tables_with_many_columns()
+    public function should_have_json_with_many_tables_with_many_columns()
     {
         //Arrange
         // Table 1
@@ -268,7 +268,7 @@ class ScanInMemoryTest extends TestCase
     /**
      * @test
      */
-    public function should_save_json_with_one_table_with_one_column()
+    public function should_have_save_json_with_one_table_with_one_column()
     {
         //Arrange
         $nameTable = "users";

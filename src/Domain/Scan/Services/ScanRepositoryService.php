@@ -72,6 +72,7 @@ class ScanRepositoryService
     public function saveJson(string $path): bool
     {
         $json = $this->getJson();
+
         return $this->fileStorageRepository->save($path, $json);
     }
 }
