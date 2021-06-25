@@ -4,6 +4,7 @@ namespace KevinLbr\ForestAdminSchema\Commands;
 
 use Illuminate\Console\Command;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\EloquentTablesRepository;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryFileStorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\StorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
 
@@ -42,13 +43,13 @@ class ScanCommand extends Command
     {
         $path = base_path() . '/forestadmin-schema.json';
 
-        // TODO get count table
-        // TODO start progress bar ?
+        $success = (new ScanRepositoryService(new EloquentTablesRepository(), new InMemoryFileStorageRepository()))->saveJson($path);
 
-        $success = (new ScanRepositoryService(new EloquentTablesRepository(), new StorageRepository()))->saveJson($path);
-
-        // TODO end progress bar
-        // TODO show result in terminal
+        if($success){
+            $this->info('The command was successful!');
+        } else {
+            $this->error('The command was not successful!');
+        }
 
         return $success;
     }
