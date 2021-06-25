@@ -11,4 +11,6 @@ interface FileStorageRepositoryInterface
     public function fileExists(string $path): bool;
 
     public function remove(string $path): bool;
+
+    public function get(string $path);
 }

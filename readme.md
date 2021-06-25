@@ -38,3 +38,4 @@ Forest admin schema is a Laravel Package which introspect the models schema.
 - Dimanche 19h - 21h : Initialisation du projet sur github, création du paquet, mise en place du DDD et du TDD.
 - Mardi 7h30 - 9h30 : Finalisation du dev avec des repositories 'in memory'. Commencement des repositories Eloquent et Storage
 - Jeudi 7h30 - 9h30 : Recherche de paquets Laravel sur github qui utilisent doctrine et les façades Laravel dans les tests pour corriger mon probleme + mise en place de la solution sur mon paquet + avancement du ScanEloquentTest.php
+- Vendredi 7h30 - 9h30 : Finalisation des tests avec DB

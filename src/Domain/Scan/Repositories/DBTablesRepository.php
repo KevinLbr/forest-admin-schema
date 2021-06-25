@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Column;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
 
-class EloquentTablesRepository implements TablesRepositoryInterface
+class DBTablesRepository implements TablesRepositoryInterface
 {
     public function getTables(): array
     {

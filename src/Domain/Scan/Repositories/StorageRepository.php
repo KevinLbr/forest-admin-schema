@@ -26,4 +26,9 @@ class StorageRepository implements FileStorageRepositoryInterface
 
         return ! $this->fileExists($path);
     }
+
+    public function get(string $path)
+    {
+        return Storage::get($path);
+    }
 }

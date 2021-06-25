@@ -4,7 +4,7 @@
 namespace KevinLbr\ForestAdminSchema\Domain\Scan\Repositories;
 
 
-class InMemoryFileStorageRepository implements FileStorageRepositoryInterface
+class FilesystemStorageRepository implements FileStorageRepositoryInterface
 {
     public function save(string $path, array $json): bool
     {
@@ -23,5 +23,10 @@ class InMemoryFileStorageRepository implements FileStorageRepositoryInterface
         }
 
         return ! $this->fileExists($path);
+    }
+
+    public function get(string $path)
+    {
+        return file_get_contents($path);
     }
 }

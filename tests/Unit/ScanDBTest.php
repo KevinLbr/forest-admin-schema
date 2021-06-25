@@ -5,14 +5,14 @@ namespace KevinLbr\ForestAdminSchema\Tests\Unit;
 use Illuminate\Database\Schema\Blueprint;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Column;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
-use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\EloquentTablesRepository;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\DBTablesRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\FileStorageRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\StorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
 use KevinLbr\ForestAdminSchema\Tests\TestCase;
 
-class ScanEloquentTest extends TestCase
+class ScanDBTest extends TestCase
 {
     /**
      * @var TablesRepositoryInterface
@@ -32,7 +32,7 @@ class ScanEloquentTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->repository = new EloquentTablesRepository();
+        $this->repository = new DBTablesRepository();
         $this->fileStorageRepository = new StorageRepository();
         $this->path = __DIR__ . "/forestadmin-schema.json";
     }
@@ -278,10 +278,15 @@ class ScanEloquentTest extends TestCase
      */
     public function should_have_save_json_with_one_table_with_one_column()
     {
+        $nameTable = "users";
+        $nameColumn = "name";
+        $typeColumn = Column::TYPE_STRING;
+        $column = new Column($nameColumn, $typeColumn);
+        $tableModel = new Table($nameTable, [$column]);
+
         // Arrange
-        $this->app['db']->connection()->getSchemaBuilder()->create("users", function(Blueprint $table){
-            $table->increments('id');
-            $table->string('name');
+        $this->app['db']->connection()->getSchemaBuilder()->create($nameTable, function(Blueprint $table) use($nameColumn){
+            $table->string($nameColumn);
         });
 
         //Act
@@ -290,5 +295,25 @@ class ScanEloquentTest extends TestCase
         // Asserts
         $this->assertTrue($success);
         $this->assertTrue($this->fileStorageRepository->fileExists($this->path));
+
+        $json = json_decode($this->fileStorageRepository->get($this->path), true);
+
+        $this->assertNotEmpty($json);
+        $this->assertNotEmpty($json);
+
+        $jsonExpected = [
+            [
+                "table" => $tableModel->getName(),
+                "qty_columns" => count($tableModel->getColumns()),
+                "columns" => [
+                    [
+                        "name" => $nameColumn,
+                        "type" => $typeColumn,
+                    ],
+                ]
+            ],
+        ];
+
+        $this->assertEquals($json, $jsonExpected);
     }
 }

@@ -5,7 +5,7 @@ namespace KevinLbr\ForestAdminSchema\Tests\Unit;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Column;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Models\Table;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\FileStorageRepositoryInterface;
-use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryFileStorageRepository;
+use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\FilesystemStorageRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\InMemoryTablesRepository;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Repositories\TablesRepositoryInterface;
 use KevinLbr\ForestAdminSchema\Domain\Scan\Services\ScanRepositoryService;
@@ -32,7 +32,7 @@ class ScanInMemoryTest extends TestCase
     {
         parent::setUp();
         $this->repository = new InMemoryTablesRepository();
-        $this->fileStorageRepository = new InMemoryFileStorageRepository();
+        $this->fileStorageRepository = new FilesystemStorageRepository();
         $this->path = __DIR__ . "/forestadmin-schema.json";
     }
 
@@ -275,8 +275,8 @@ class ScanInMemoryTest extends TestCase
         $nameColumn = "name";
         $typeColumn = Column::TYPE_STRING;
         $column = new Column($nameColumn, $typeColumn);
-        $table = new Table($nameTable, [$column]);
-        $this->repository->setTables([$table]);
+        $tableModel = new Table($nameTable, [$column]);
+        $this->repository->setTables([$tableModel]);
 
         //Act
         $success = (new ScanRepositoryService($this->repository, $this->fileStorageRepository))->saveJson($this->path);
@@ -284,5 +284,30 @@ class ScanInMemoryTest extends TestCase
         // Asserts
         $this->assertTrue($success);
         $this->assertTrue($this->fileStorageRepository->fileExists($this->path));
+
+
+        // Asserts
+        $this->assertTrue($success);
+        $this->assertTrue($this->fileStorageRepository->fileExists($this->path));
+
+        $json = json_decode($this->fileStorageRepository->get($this->path), true);
+
+        $this->assertNotEmpty($json);
+        $this->assertNotEmpty($json);
+
+        $jsonExpected = [
+            [
+                "table" => $tableModel->getName(),
+                "qty_columns" => count($tableModel->getColumns()),
+                "columns" => [
+                    [
+                        "name" => $nameColumn,
+                        "type" => $typeColumn,
+                    ],
+                ]
+            ],
+        ];
+
+        $this->assertEquals($json, $jsonExpected);
     }
 }
